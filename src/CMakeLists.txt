@@ -21,7 +21,7 @@ remove_definitions(
 
 ##########################################
 
-add_library(dolphinvcs SHARED)
+add_library(dolphinvcs STATIC)
 
 target_sources(dolphinvcs PRIVATE
     views/versioncontrol/kversioncontrolplugin.cpp
@@ -34,11 +34,11 @@ target_link_libraries(
     Qt${QT_MAJOR_VERSION}::Widgets
 )
 
-set_target_properties(dolphinvcs PROPERTIES
-    VERSION ${DOLPHINVCS_VERSION}
-    SOVERSION ${DOLPHINVCS_SOVERSION}
-    EXPORT_NAME DolphinVcs
-)
+#set_target_properties(dolphinvcs PROPERTIES
+    #VERSION ${DOLPHINVCS_VERSION}
+    #SOVERSION ${DOLPHINVCS_SOVERSION}
+    #EXPORT_NAME DolphinVcs
+#)
 
 ecm_generate_headers(dolphinvcs_LIB_HEADERS
     HEADER_NAMES
@@ -56,7 +56,7 @@ install(FILES ${dolphinvcs_LIB_HEADERS} DESTINATION "${KDE_INSTALL_INCLUDEDIR}/D
 
 ########### next target ###############
 
-add_library(dolphinprivate SHARED)
+add_library(dolphinprivate STATIC)
 
 target_sources(dolphinprivate PRIVATE
     kitemviews/kfileitemlistview.cpp
@@ -169,10 +169,10 @@ if(HAVE_BALOO)
     )
 endif()
 
-set_target_properties(dolphinprivate PROPERTIES
-    VERSION ${DOLPHINPRIVATE_VERSION}
-    SOVERSION ${DOLPHINPRIVATE_SOVERSION}
-)
+#set_target_properties(dolphinprivate PROPERTIES
+    #VERSION ${DOLPHINPRIVATE_VERSION}
+    #SOVERSION ${DOLPHINPRIVATE_SOVERSION}
+#)
 
 install(TARGETS dolphinprivate ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/dolphin_export.h DESTINATION ${KDE_INSTALL_INCLUDEDIR} COMPONENT Devel)
